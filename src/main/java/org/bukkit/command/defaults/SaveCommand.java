@@ -22,7 +22,7 @@ public class SaveCommand extends VanillaCommand {
     public boolean execute(CommandSender sender, String currentAlias, String[] args) {
         if (!testPermission(sender)) return true;
 
-        Command.broadcastCommandMessage(sender, "Сохранение...");
+        Command.broadcastCommandMessage(sender, "Принудительное сохранение...");
 
         Bukkit.savePlayers();
 

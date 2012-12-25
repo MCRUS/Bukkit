@@ -77,7 +77,7 @@ public class GameModeCommand extends VanillaCommand {
                 sender.sendMessage("Игровой режим игрока "+player.getName() + " уже " + RussianModel.getGamemode(mode).toLowerCase());
             }
         } else {
-            sender.sendMessage("Игрок " + playerArg + " не найжен.");
+            sender.sendMessage("Игрок " + playerArg + " не найден.");
         }
 
         return true;

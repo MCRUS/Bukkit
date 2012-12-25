@@ -14,7 +14,7 @@ import com.google.common.collect.ImmutableList;
 public class BanCommand extends VanillaCommand {
     public BanCommand() {
         super("ban");
-        this.description = "Запрещает использование сервера определнным игроком";
+        this.description = "Запрещает использование сервера определенным игроком";
         this.usageMessage = "/ban <игрок> [причина ...]";
         this.setPermission("bukkit.command.ban.player");
     }

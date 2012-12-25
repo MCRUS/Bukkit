@@ -15,7 +15,7 @@ import org.bukkit.util.StringUtil;
 public class ExpCommand extends VanillaCommand {
     public ExpCommand() {
         super("xp");
-        this.description = "Выдает указаному игроку указаное количество опыта. Указывайте <колличество>L для выдачи уровней. Если значение отричательное, то опыт снимается.";
+        this.description = "Выдает указанному игроку указаное количество опыта. Указывайте <количество>L для выдачи уровней. Если значение отричательное, то опыт снимается.";
         this.usageMessage = "/xp <количество> [игрок] ИЛИ /xp <количество>L [игрок]";
         this.setPermission("bukkit.command.xp");
     }

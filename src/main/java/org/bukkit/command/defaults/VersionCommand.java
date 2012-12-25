@@ -58,7 +58,7 @@ public class VersionCommand extends BukkitCommand {
             }
 
             if (!found) {
-                sender.sendMessage("На этом сервера не такого плагина.");
+                sender.sendMessage("На этом сервере нет такого плагина.");
                 sender.sendMessage("Используйте /plugins чтобы получить список плагинов.");
             }
         }

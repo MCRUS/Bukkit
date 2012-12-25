@@ -30,7 +30,7 @@ public class GiveCommand extends VanillaCommand {
 
     public GiveCommand() {
         super("give");
-        this.description = "Выдает игроку заданное количесвто предметов";
+        this.description = "Выдает игроку заданное количество предметов";
         this.usageMessage = "/give <игрок> <предмет> [количество [данные]]";
         this.setPermission("bukkit.command.give");
     }

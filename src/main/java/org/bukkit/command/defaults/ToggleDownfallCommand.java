@@ -40,7 +40,7 @@ public class ToggleDownfallCommand extends VanillaCommand {
         }
 
         if (world.hasStorm())
-            Command.broadcastCommandMessage(sender, "Теперь в мире '" + world.getName() + "' штормит.");
+            Command.broadcastCommandMessage(sender, "Теперь в мире '" + world.getName() + "' шторм.");
         else
             Command.broadcastCommandMessage(sender, "Теперь в мире '" + world.getName() + "' солнечно.");
         world.setStorm(!world.hasStorm());

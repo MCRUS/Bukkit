@@ -43,7 +43,7 @@ public class GameRuleCommand extends VanillaCommand {
                     sender.sendMessage(rule + " = " + value);
                 }
             } else {
-                sender.sendMessage(ChatColor.RED + "Правило " + rule + " не найжено");
+                sender.sendMessage(ChatColor.RED + "Правило " + rule + " не найдено");
             }
 
             return true;

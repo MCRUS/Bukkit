@@ -55,13 +55,13 @@ public class EnchantCommand extends VanillaCommand {
 
                 Enchantment enchantment = getEnchantment(args[1].toUpperCase());
                 if (enchantment == null) {
-                    sender.sendMessage(String.format("Зачарование не существут: %s", args[1]));
+                    sender.sendMessage(String.format("Зачарование не существует: %s", args[1]));
                 }  else {
                     String enchantmentName = enchantment.getName().replaceAll("_", " ");
                     enchantmentName = WordUtils.capitalizeFully(enchantmentName);
 
                     if (!force && !enchantment.canEnchantItem(item)) {
-                        sender.sendMessage(String.format("%s неможет применено к %s", enchantmentName, itemName));
+                        sender.sendMessage(String.format("%s не может применено к %s", enchantmentName, itemName));
                     } else {
                         int level = 1;
                         if (args.length > 2) {
@@ -77,7 +77,7 @@ public class EnchantCommand extends VanillaCommand {
                                 }
 
                                 if (integer < minLevel || integer > maxLevel) {
-                                    sender.sendMessage(String.format("Уровень зачарование %s доблжен быть в пределах %d и %d", enchantmentName, minLevel, maxLevel));
+                                    sender.sendMessage(String.format("Уровень зачарования %s должен быть в пределах %d и %d", enchantmentName, minLevel, maxLevel));
                                     sender.sendMessage("Укажите 0 чтобы убрать зачарование");
                                     return true;
                                 }

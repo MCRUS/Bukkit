@@ -40,7 +40,7 @@ public class BanListCommand extends VanillaCommand {
             message.append(banlist[x].getName());
         }
 
-        sender.sendMessage("Всего " + banlist.length + " " + StringUtil.plural(banlist.length, "забаненый игрок", "забаненых игрока", "забаненых игроков") + ":");
+        sender.sendMessage("Всего " + banlist.length + " " + StringUtil.plural(banlist.length, "заблокированный игрок", "заблокированных игрока", "заблокированных игроков") + ":");
         sender.sendMessage(message.toString());
         return true;
     }

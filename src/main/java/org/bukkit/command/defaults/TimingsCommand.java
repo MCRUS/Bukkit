@@ -37,7 +37,7 @@ public class TimingsCommand extends BukkitCommand {
             return false;
         }
         if (!sender.getServer().getPluginManager().useTimings()) {
-            sender.sendMessage("Пожалуйста, включите измените значение переменной \"settings.plugin-profiling\" на true в bukkit.yml");
+            sender.sendMessage("Пожалуйста, измените значение переменной \"settings.plugin-profiling\" на true в bukkit.yml");
             return true;
         }
 

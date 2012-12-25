@@ -44,7 +44,7 @@ public class WhitelistCommand extends VanillaCommand {
                 if (badPerm(sender, "disable")) return true;
 
                 Bukkit.setWhitelist(false);
-                Command.broadcastCommandMessage(sender, "Белвый список выключен");
+                Command.broadcastCommandMessage(sender, "Белый список выключен");
                 return true;
             } else if (args[0].equalsIgnoreCase("list")) {
                 if (badPerm(sender, "list")) return true;
@@ -68,7 +68,7 @@ public class WhitelistCommand extends VanillaCommand {
 
                 Bukkit.getOfflinePlayer(args[1]).setWhitelisted(true);
 
-                Command.broadcastCommandMessage(sender, "Игрок " + args[1] + " добавлен в делый список");
+                Command.broadcastCommandMessage(sender, "Игрок " + args[1] + " добавлен в белый список");
                 return true;
             } else if (args[0].equalsIgnoreCase("remove")) {
                 if (badPerm(sender, "remove")) return true;

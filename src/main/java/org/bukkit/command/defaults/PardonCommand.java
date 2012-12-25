@@ -30,7 +30,7 @@ public class PardonCommand extends VanillaCommand {
         }
 
         Bukkit.getOfflinePlayer(args[0]).setBanned(false);
-        Command.broadcastCommandMessage(sender, "Игроку " + args[0] + " теперь может заходить на сервер.");
+        Command.broadcastCommandMessage(sender, "Игрок " + args[0] + " теперь может заходить на сервер.");
         return true;
     }
 

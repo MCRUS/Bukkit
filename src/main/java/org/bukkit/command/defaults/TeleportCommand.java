@@ -63,7 +63,7 @@ public class TeleportCommand extends VanillaCommand {
             double z = getCoordinate(sender, playerLocation.getZ(), args[args.length - 1]);
 
             if (x == MIN_COORD_MINUS_ONE || y == MIN_COORD_MINUS_ONE || z == MIN_COORD_MINUS_ONE) {
-                sender.sendMessage("Пожалуйста, введите корректныек координаты!");
+                sender.sendMessage("Пожалуйста, введите корректные координаты!");
                 return true;
             }
 
