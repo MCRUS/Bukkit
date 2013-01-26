@@ -63,6 +63,8 @@ public class ClearCommand extends VanillaCommand {
             int count = player.getInventory().clear(id, data);
 
             Command.broadcastCommandMessage(sender, "Инвентарь игрока " + player.getDisplayName() + " очищен. " + StringUtil.plural(count, "Удален", "Удалены", "Удалено") + " " + count + " " + StringUtil.plural(count, "предмет", "предмета", "предметов"));
+        } else if (args.length == 0) {
+            sender.sendMessage(ChatColor.RED + "Укажите игрока!");
         } else {
             sender.sendMessage(ChatColor.RED + "Игрок " + args[0] + " не найден");
         }
