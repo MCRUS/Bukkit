@@ -24,7 +24,7 @@ public class EnchantCommand extends VanillaCommand {
 
     public EnchantCommand() {
         super("enchant");
-        this.description = "Добавляет зачарование на предмет который сейчас держит игрок. Укажите значение 0 если хотите убрать зачарование. Используйте force чтобы игнорировать правила зачарований.";
+        this.description = "Добавляет зачарование на предмет, который сейчас держит игрок. Укажите значение 0, если хотите убрать зачарование. Используйте force, чтобы игнорировать правила зачарований.";
         this.usageMessage = "/enchant <игрок> <заклинание> [уровень|max|0] [force]";
         this.setPermission("bukkit.command.enchant");
     }

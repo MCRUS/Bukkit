@@ -17,7 +17,7 @@ public class BanIpCommand extends VanillaCommand {
 
     public BanIpCommand() {
         super("ban-ip");
-        this.description = "Запрещает использование сервера игрокам с опрееленного IP адреса.";
+        this.description = "Запрещает использование сервера игрокам с определенного IP адреса.";
         this.usageMessage = "/ban-ip <адрес|игрок> [причина ...]";
         this.setPermission("bukkit.command.ban.ip");
     }
