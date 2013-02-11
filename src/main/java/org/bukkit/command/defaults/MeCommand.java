@@ -7,7 +7,7 @@ import org.bukkit.command.CommandSender;
 public class MeCommand extends VanillaCommand {
     public MeCommand() {
         super("me");
-        this.description = "Выполняет указанное действия в чате";
+        this.description = "Выполняет указанные действия в чате";
         this.usageMessage = "/me <действия>";
         this.setPermission("bukkit.command.me");
     }
