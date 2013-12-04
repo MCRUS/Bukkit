@@ -86,7 +86,7 @@ public class TimingsCommand extends BukkitCommand {
                             totalTime += time;
                             Class<? extends Event> eventClass = trl.getEventClass();
                             if (count > 0 && eventClass != null) {
-                                fileTimings.println("    " + eventClass.getSimpleName() + (trl.hasMultiple() ? " (and sub-classes)" : "") + " Time: " + time + " Count: " + count + " Avg: " + avg);
+                                fileTimings.println("    " + eventClass.getSimpleName() + (trl.hasMultiple() ? " (и суб-классы)" : "") + " Время: " + time + " Кол.: " + count + " Среднее: " + avg);
                             }
                         }
                     }
