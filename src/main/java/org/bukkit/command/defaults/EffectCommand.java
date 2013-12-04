@@ -67,7 +67,7 @@ public class EffectCommand extends VanillaCommand {
         }
 
         if (effect == null) {
-            sender.sendMessage(ChatColor.RED + String.format("Эффект %s не найжен", args[1]));
+            sender.sendMessage(ChatColor.RED + String.format("Эффект %s не найден", args[1]));
             return true;
         }
 
