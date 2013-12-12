@@ -63,7 +63,7 @@ public class ScoreboardCommand extends VanillaCommand {
 
     public ScoreboardCommand() {
         super("scoreboard");
-        this.description = "Scoreboard control";
+        this.description = "Управление coreboard";
         this.usageMessage = "/scoreboard";
         this.setPermission("bukkit.command.scoreboard");
     }
@@ -73,7 +73,7 @@ public class ScoreboardCommand extends VanillaCommand {
         if (!testPermission(sender))
             return true;
         if (args.length < 1 || args[0].length() == 0) {
-            sender.sendMessage(ChatColor.RED + "Usage: /scoreboard <objectives|players|teams>");
+            sender.sendMessage(ChatColor.RED + "Использование: /scoreboard <objectives|players|teams>");
             return false;
         }
 
@@ -81,13 +81,13 @@ public class ScoreboardCommand extends VanillaCommand {
 
         if (args[0].equalsIgnoreCase("objectives")) {
             if (args.length == 1) {
-                sender.sendMessage(ChatColor.RED + "Usage: /scoreboard objectives <list|add|remove|setdisplay>");
+                sender.sendMessage(ChatColor.RED + "Использование: /scoreboard objectives <list|add|remove|setdisplay>");
                 return false;
             }
             if (args[1].equalsIgnoreCase("list")) {
                 Set<Objective> objectives = mainScoreboard.getObjectives();
                 if (objectives.isEmpty()) {
-                    sender.sendMessage(ChatColor.RED + "There are no objectives on the scoreboard");
+                    sender.sendMessage(ChatColor.RED + "В данном scoreboard не найдены объекты");
                     return false;
                 }
                 sender.sendMessage(ChatColor.DARK_GREEN + "Showing " + objectives.size() + " objective(s) on scoreboard");
