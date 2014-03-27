@@ -23,8 +23,8 @@ import com.google.common.collect.ImmutableList;
 public class AchievementCommand extends VanillaCommand {
     public AchievementCommand() {
         super("achievement");
-        this.description = "Gives the specified player an achievement or changes a statistic value. Use '*' to give all achievements.";
-        this.usageMessage = "/achievement give <stat_name> [player]";
+        this.description = "Выдает игроку достижение или изменяет его значение. Используйте '*' для выдачи всех достижений.";
+        this.usageMessage = "/achievement give <навание_достижения> [игрок]";
         this.setPermission("bukkit.command.achievement");
     }
 
@@ -33,12 +33,12 @@ public class AchievementCommand extends VanillaCommand {
         if (!testPermission(sender)) return true;
 
         if (args.length < 2) {
-            sender.sendMessage(ChatColor.RED + "Usage: " + usageMessage);
+            sender.sendMessage(ChatColor.RED + "Использование: " + usageMessage);
             return false;
         }
 
         if (!args[0].equalsIgnoreCase("give")) {
-            sender.sendMessage(ChatColor.RED + "Usage: " + usageMessage);
+            sender.sendMessage(ChatColor.RED + "Использование: " + usageMessage);
             return false;
         }
 
@@ -52,7 +52,7 @@ public class AchievementCommand extends VanillaCommand {
         }
 
         if (player == null) {
-            sender.sendMessage("You must specify which player you wish to perform this action on.");
+            sender.sendMessage("Вы должны указать игрока для применения данной команды.");
             return true;
         }
 
@@ -67,7 +67,7 @@ public class AchievementCommand extends VanillaCommand {
                     player.awardAchievement(achievement);
                 }
             }
-            Command.broadcastCommandMessage(sender, String.format("Successfully given all achievements to %s", player.getName()));
+            Command.broadcastCommandMessage(sender, String.format("Игроку %s были выданы все достижения.", player.getName()));
             return true;
         }
 
@@ -76,24 +76,24 @@ public class AchievementCommand extends VanillaCommand {
 
         if (achievement != null) {
             if (player.hasAchievement(achievement)) {
-                sender.sendMessage(String.format("%s already has achievement %s", player.getName(), statisticString));
+                sender.sendMessage(String.format("Игрок %s уже имеет достижение %s", player.getName(), statisticString));
                 return true;
             }
 
             PlayerAchievementAwardedEvent event = new PlayerAchievementAwardedEvent(player, achievement);
             Bukkit.getServer().getPluginManager().callEvent(event);
             if (event.isCancelled()) {
-                sender.sendMessage(String.format("Unable to award %s the achievement %s", player.getName(), statisticString));
+                sender.sendMessage(String.format("Ошибка награждения %s достижением %s", player.getName(), statisticString));
                 return true;
             }
             player.awardAchievement(achievement);
                 
-            Command.broadcastCommandMessage(sender, String.format("Successfully given %s the stat %s", player.getName(), statisticString));
+            Command.broadcastCommandMessage(sender, String.format("Игроку %s успешно выдано достижение %s", player.getName(), statisticString));
             return true;
         }
 
         if (statistic == null) {
-            sender.sendMessage(String.format("Unknown achievement or statistic '%s'", statisticString));
+            sender.sendMessage(String.format("Достижение или статистика не найдена '%s'", statisticString));
             return true;
         }
 
@@ -101,11 +101,11 @@ public class AchievementCommand extends VanillaCommand {
             PlayerStatisticIncrementEvent event = new PlayerStatisticIncrementEvent(player, statistic, player.getStatistic(statistic), player.getStatistic(statistic) + 1);
             Bukkit.getServer().getPluginManager().callEvent(event);
             if (event.isCancelled()) {
-                sender.sendMessage(String.format("Unable to increment %s for %s", statisticString, player.getName()));
+                sender.sendMessage(String.format("Ошибка увеличения значения %s для %s", statisticString, player.getName()));
                 return true;
             }
             player.incrementStatistic(statistic);
-            Command.broadcastCommandMessage(sender, String.format("Successfully given %s the stat %s", player.getName(), statisticString));
+            Command.broadcastCommandMessage(sender, String.format("Игроку %s успешно выдана статистика %s", player.getName(), statisticString));
             return true;
         }
 
@@ -113,21 +113,21 @@ public class AchievementCommand extends VanillaCommand {
             EntityType entityType = EntityType.fromName(statisticString.substring(statisticString.lastIndexOf(".") + 1));
 
             if (entityType == null) {
-                sender.sendMessage(String.format("Unknown achievement or statistic '%s'", statisticString));
+                sender.sendMessage(String.format("Достижение или статистика не найдена '%s'", statisticString));
                 return true;
             }
 
             PlayerStatisticIncrementEvent event = new PlayerStatisticIncrementEvent(player, statistic, player.getStatistic(statistic), player.getStatistic(statistic) + 1, entityType);
             Bukkit.getServer().getPluginManager().callEvent(event);
             if (event.isCancelled()) {
-                sender.sendMessage(String.format("Unable to increment %s for %s", statisticString, player.getName()));
+                sender.sendMessage(String.format("Ошибка увеличения значения %s для %s", statisticString, player.getName()));
                 return true;
             }
 
             try {
                 player.incrementStatistic(statistic, entityType);
             } catch (IllegalArgumentException e) {
-                sender.sendMessage(String.format("Unknown achievement or statistic '%s'", statisticString));
+                sender.sendMessage(String.format("Достижение или статистика не найдена '%s'", statisticString));
                 return true;
             }
         } else {
@@ -142,26 +142,26 @@ public class AchievementCommand extends VanillaCommand {
             Material material = Material.getMaterial(id);
 
             if (material == null) {
-                sender.sendMessage(String.format("Unknown achievement or statistic '%s'", statisticString));
+                sender.sendMessage(String.format("Достижение или статистика не найдена '%s'", statisticString));
                 return true;
             }
 
             PlayerStatisticIncrementEvent event = new PlayerStatisticIncrementEvent(player, statistic, player.getStatistic(statistic), player.getStatistic(statistic) + 1, material);
             Bukkit.getServer().getPluginManager().callEvent(event);
             if (event.isCancelled()) {
-                sender.sendMessage(String.format("Unable to increment %s for %s", statisticString, player.getName()));
+                sender.sendMessage(String.format("Ошибка увеличения значения %s для %s", statisticString, player.getName()));
                 return true;
             }
 
             try {
                 player.incrementStatistic(statistic, material);
             } catch (IllegalArgumentException e) {
-                sender.sendMessage(String.format("Unknown achievement or statistic '%s'", statisticString));
+                sender.sendMessage(String.format("Достижение или статистика не найдена '%s'", statisticString));
                 return true;
             }
         }
 
-        Command.broadcastCommandMessage(sender, String.format("Successfully given %s the stat %s", player.getName(), statisticString));
+        Command.broadcastCommandMessage(sender, String.format("SИгроку %s успешно указана статиситика %s", player.getName(), statisticString));
         return true;
     }
 

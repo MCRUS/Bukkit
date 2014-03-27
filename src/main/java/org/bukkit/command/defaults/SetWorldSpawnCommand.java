@@ -16,8 +16,8 @@ public class SetWorldSpawnCommand extends VanillaCommand {
 
     public SetWorldSpawnCommand() {
         super("setworldspawn");
-        this.description = "Sets a worlds's spawn point. If no coordinates are specified, the player's coordinates will be used.";
-        this.usageMessage = "/setworldspawn OR /setworldspawn <x> <y> <z>";
+        this.description = "Указывает точку возрождения игроков. Если координаты не указаны то используется положение игрока исполнившего команду.";
+        this.usageMessage = "/setworldspawn ИЛИ /setworldspawn <x> <y> <z>";
         this.setPermission("bukkit.command.setworldspawn");
     }
 
@@ -38,7 +38,7 @@ public class SetWorldSpawnCommand extends VanillaCommand {
 
         if (args.length == 0) {
             if (player == null) {
-                sender.sendMessage("You can only perform this command as a player");
+                sender.sendMessage("Вы можете использовать эту команду только как игрок.");
                 return true;
             }
 
@@ -57,13 +57,13 @@ public class SetWorldSpawnCommand extends VanillaCommand {
                 return true;
             }
         } else {
-            sender.sendMessage(ChatColor.RED + "Usage: " + usageMessage);
+            sender.sendMessage(ChatColor.RED + "Использование: " + usageMessage);
             return false;
         }
 
         world.setSpawnLocation(x, y, z);
 
-        Command.broadcastCommandMessage(sender, "Set world " + world.getName() + "'s spawnpoint to (" + x + ", " + y + ", " + z + ")");
+        Command.broadcastCommandMessage(sender, "Точка возрождения в мире " + world.getName() + " указана на (" + x + ", " + y + ", " + z + ")");
         return true;
 
     }

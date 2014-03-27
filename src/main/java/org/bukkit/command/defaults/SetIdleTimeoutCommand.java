@@ -7,6 +7,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.util.StringUtil;
 
 import java.util.List;
 
@@ -14,8 +15,8 @@ public class SetIdleTimeoutCommand extends VanillaCommand {
 
     public SetIdleTimeoutCommand() {
         super("setidletimeout");
-        this.description = "Sets the server's idle timeout";
-        this.usageMessage = "/setidletimeout <Minutes until kick>";
+        this.description = "Указывает время выброса с сервера из-за бездействия";
+        this.usageMessage = "/setidletimeout <Минут до выброса>";
         this.setPermission("bukkit.command.setidletimeout");
     }
 
@@ -35,10 +36,10 @@ public class SetIdleTimeoutCommand extends VanillaCommand {
 
             Bukkit.getServer().setIdleTimeout(minutes);
 
-            Command.broadcastCommandMessage(sender, "Successfully set the idle timeout to " + minutes + " minutes.");
+            Command.broadcastCommandMessage(sender, "Время выброса успешно изменено на " + minutes + " " + StringUtil.plural(minutes, "минуту", "минуты", "минут") + ".");
             return true;
         }
-        sender.sendMessage(ChatColor.RED + "Usage: " + usageMessage);
+        sender.sendMessage(ChatColor.RED + "Использование: " + usageMessage);
         return false;
     }
 

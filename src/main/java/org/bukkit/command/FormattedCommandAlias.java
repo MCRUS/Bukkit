@@ -28,7 +28,7 @@ public class FormattedCommandAlias extends Command {
                 if (throwable instanceof IllegalArgumentException) {
                     sender.sendMessage(throwable.getMessage());
                 } else {
-                    sender.sendMessage(org.bukkit.ChatColor.RED + "An internal error occurred while attempting to perform this command");
+                    sender.sendMessage(org.bukkit.ChatColor.RED + "На сервере произошла обишка во время исполнения команды.");
                 }
                 return false;
             }
