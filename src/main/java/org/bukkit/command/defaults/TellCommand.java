@@ -1,16 +1,18 @@
 package org.bukkit.command.defaults;
 
+import java.util.Arrays;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 
 public class TellCommand extends VanillaCommand {
     public TellCommand() {
         super("tell");
         this.description = "Отсылает личное сообщение указанному игроку.";
-        this.usageMessage = "/tell <игрок> <сообщение>";
+        this.usageMessage = "/tell <<игрок> <сообщение>";
+        this.setAliases(Arrays.asList(new String[] { "w", "msg" }));
         this.setPermission("bukkit.command.tell");
     }
 
@@ -42,10 +44,5 @@ public class TellCommand extends VanillaCommand {
         }
 
         return true;
-    }
-
-    @Override
-    public boolean matches(String input) {
-        return input.equalsIgnoreCase("tell") || input.equalsIgnoreCase("w") || input.equalsIgnoreCase("msg");
     }
 }

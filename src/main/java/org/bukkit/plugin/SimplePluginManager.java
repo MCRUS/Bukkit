@@ -131,15 +131,35 @@ public final class SimplePluginManager implements PluginManager {
             PluginDescriptionFile description = null;
             try {
                 description = loader.getPluginDescription(file);
+                String name = description.getName();
+                if (name.equalsIgnoreCase("bukkit") || name.equalsIgnoreCase("minecraft") || name.equalsIgnoreCase("mojang")) {
+                    server.getLogger().log(Level.SEVERE, "Could not load '" + file.getPath() + "' in folder '" + directory.getPath() + "': Restricted Name");
+                    continue;
+                } else if (description.rawName.indexOf(' ') != -1) {
+                    server.getLogger().warning(String.format(
+                        "Plugin `%s' uses the space-character (0x20) in its name `%s' - this is discouraged",
+                        description.getFullName(),
+                        description.rawName
+                        ));
+                }
             } catch (InvalidDescriptionException ex) {
                 server.getLogger().log(Level.SEVERE, "Could not load '" + file.getPath() + "' in folder '" + directory.getPath() + "'", ex);
                 continue;
             }
 
-            plugins.put(description.getName(), file);
+            File replacedFile = plugins.put(description.getName(), file);
+            if (replacedFile != null) {
+                server.getLogger().severe(String.format(
+                    "Ambiguous plugin name `%s' for files `%s' and `%s' in `%s'",
+                    description.getName(),
+                    file.getPath(),
+                    replacedFile.getPath(),
+                    directory.getPath()
+                    ));
+            }
 
             Collection<String> softDependencySet = description.getSoftDepend();
-            if (softDependencySet != null) {
+            if (softDependencySet != null && !softDependencySet.isEmpty()) {
                 if (softDependencies.containsKey(description.getName())) {
                     // Duplicates do not matter, they will be removed together if applicable
                     softDependencies.get(description.getName()).addAll(softDependencySet);
@@ -149,12 +169,12 @@ public final class SimplePluginManager implements PluginManager {
             }
 
             Collection<String> dependencySet = description.getDepend();
-            if (dependencySet != null) {
+            if (dependencySet != null && !dependencySet.isEmpty()) {
                 dependencies.put(description.getName(), new LinkedList<String>(dependencySet));
             }
 
             Collection<String> loadBeforeSet = description.getLoadBefore();
-            if (loadBeforeSet != null) {
+            if (loadBeforeSet != null && !loadBeforeSet.isEmpty()) {
                 for (String loadBeforeTarget : loadBeforeSet) {
                     if (softDependencies.containsKey(loadBeforeTarget)) {
                         softDependencies.get(loadBeforeTarget).add(description.getName());
@@ -337,7 +357,7 @@ public final class SimplePluginManager implements PluginManager {
      * @return Plugin if it exists, otherwise null
      */
     public synchronized Plugin getPlugin(String name) {
-        return lookupNames.get(name);
+        return lookupNames.get(name.replace(' ', '_'));
     }
 
     public synchronized Plugin[] getPlugins() {
